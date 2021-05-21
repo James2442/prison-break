@@ -124,6 +124,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile29`, function (sprite, 
     game.showLongText("I've heard you're new here. Meet me in cell 8 (on the far right) and I can help you out. - Ricky", DialogLayout.Bottom)
     tiles.setWallAt(tiles.getTileLocation(16, 1), true)
     tiles.setWallAt(tiles.getTileLocation(17, 1), true)
+    tiles.setWallAt(tiles.getTileLocation(15, 6), false)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -345,6 +346,7 @@ tiles.placeOnTile(guard2, tiles.getTileLocation(6, 16))
 tiles.placeOnTile(guard3, tiles.getTileLocation(30, 16))
 tiles.placeOnTile(guard4, tiles.getTileLocation(55, 28))
 game.showLongText("Welcome to Wilford Prison. You're going to be here for a long time, so make yourself welcome. You are housed here with 7 other prisoners and 4 guards. Say hi when you get some time!", DialogLayout.Bottom)
+tiles.setWallAt(tiles.getTileLocation(15, 6), true)
 game.onUpdate(function () {
     if (prisoner1.isHittingTile(CollisionDirection.Left)) {
         prisoner1.vx += 50
