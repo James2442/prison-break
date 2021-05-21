@@ -4,6 +4,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Sprite"
     },
+    ")?QSmieI)[r3rLKg8gT?": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAA8P8AAAAAAADf/QAAAAAA/xH9AAAAAPARH/0AAADwHxEf/QAAAB8RHx/9AAAAHx8fEf0AAAAfHxEf/QAAAB8RH9H9AAAA3x/R/Q8AAADf3/0PAAAAAN/9DwAAAAAA8A8AAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "note"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",

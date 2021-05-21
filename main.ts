@@ -120,6 +120,11 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile29`, function (sprite, location) {
+    game.showLongText("I've heard you're new here. Meet me in cell 8 (on the far right) and I can help you out. - Ricky", DialogLayout.Bottom)
+    tiles.setWallAt(tiles.getTileLocation(16, 1), true)
+    tiles.setWallAt(tiles.getTileLocation(17, 1), true)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
@@ -330,24 +335,6 @@ let prisoner1 = sprites.create(img`
     f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
     f f f f f f f f f f f f f f f f 
     `, SpriteKind.Prisoner)
-let note = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . f f f f f f f . 
-    . . . . . . . f 1 1 1 1 d d d f 
-    . . . . . . . f 1 f f 1 f f d f 
-    . . . . . . f 1 1 1 1 1 1 d f . 
-    . . . . . f 1 1 f f 1 f 1 d f . 
-    . . . . . f 1 1 1 1 1 1 d f . . 
-    . . . . f 1 f f f 1 f 1 d f . . 
-    . . . f d 1 1 1 1 1 1 d f . . . 
-    . . . f d d d d d d d d f . . . 
-    . . f f f f f f f f f f . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
 controller.moveSprite(mySprite, 100, 100)
 tiles.setTilemap(tilemap`level1`)
 scene.cameraFollowSprite(mySprite)
@@ -357,7 +344,7 @@ tiles.placeOnTile(guard1, tiles.getTileLocation(52, 16))
 tiles.placeOnTile(guard2, tiles.getTileLocation(6, 16))
 tiles.placeOnTile(guard3, tiles.getTileLocation(30, 16))
 tiles.placeOnTile(guard4, tiles.getTileLocation(55, 28))
-tiles.placeOnTile(note, tiles.getTileLocation(16, 1))
+game.showLongText("Welcome to Wilford Prison. You're going to be here for a long time, so make yourself welcome. You are housed here with 7 other prisoners and 4 guards. Say hi when you get some time!", DialogLayout.Bottom)
 game.onUpdate(function () {
     if (prisoner1.isHittingTile(CollisionDirection.Left)) {
         prisoner1.vx += 50
