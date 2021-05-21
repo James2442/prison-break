@@ -1,0 +1,12 @@
+{
+    "]mIh55c(2:U]Oop-ANbr": {
+        "data": "hwQMABAAAAAA8P//D+BEAAD//0T+T00A8P//TuT//wDw/kT07i5B/+9ORPTuTkH/7+5ERP5OQQ/v7k5E/k5BD+/u7vTuTkH/8P7v9O4uQf/w//9O5P//AAD//0T+T00AAPD//w/gRAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Sprite"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
