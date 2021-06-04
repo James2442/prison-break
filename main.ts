@@ -244,6 +244,10 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, location) {
+    game.splash("Hey, I'm Ricky. I've got a favour to ask for. Someone's taken my things again, and if you could find them i'll be able to help you escape this place. Find my toothbrush, pillow and wallet and i'll help you out.")
+    tiles.setTileAt(tiles.getTileLocation(57, 5), sprites.dungeon.darkGroundNorthWest1)
+})
 let mySprite: Sprite = null
 mySprite = sprites.create(assets.image`Sprite`, SpriteKind.Player)
 let guard1 = sprites.create(img`
@@ -340,7 +344,7 @@ controller.moveSprite(mySprite, 100, 100)
 tiles.setTilemap(tilemap`level1`)
 scene.cameraFollowSprite(mySprite)
 tiles.placeOnTile(mySprite, tiles.getTileLocation(13, 1))
-tiles.placeOnTile(prisoner1, tiles.getTileLocation(19, 1))
+tiles.placeOnTile(prisoner1, tiles.getTileLocation(55, 1))
 tiles.placeOnTile(guard1, tiles.getTileLocation(52, 16))
 tiles.placeOnTile(guard2, tiles.getTileLocation(6, 16))
 tiles.placeOnTile(guard3, tiles.getTileLocation(30, 16))
