@@ -61,13 +61,20 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile34`, function (sprite, location) {
+    game.splash("Thanks for getting my stuff back. Here's a tip for you : The cameras have a blind spot in the bottom left courtyard - if you have the right tools you might be able to dig yourself out... Tod in cell 4 sells tools, and might be willing to give one to you for the right price.")
+    tiles.setTileAt(tiles.getTileLocation(57, 5), sprites.dungeon.darkGroundNorthWest1)
+    game.showLongText("New Goal : Talk to Tod in cell 4.", DialogLayout.Bottom)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile32`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Wallet", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(50, 15), sprites.dungeon.darkGroundNorthWest1)
+    info.changeLifeBy(-1)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile33`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Toothbrush", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(53, 8), sprites.dungeon.floorLight1)
+    info.changeLifeBy(-1)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -252,9 +259,14 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+info.onLifeZero(function () {
+    game.showLongText("You found Ricky's belongings! Bring them back to him for a reward.", DialogLayout.Bottom)
+    tiles.setTileAt(tiles.getTileLocation(57, 5), assets.tile`myTile34`)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile31`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Pillow", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(22, 13), sprites.castle.tileGrass1)
+    info.changeLifeBy(-1)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, location) {
     game.splash("Hey, I'm Ricky. I've got a favour to ask for. Someone's taken my things again, and if you could find them i'll be able to help you escape this place. Find my toothbrush, pillow and wallet and i'll help you out.")
@@ -263,6 +275,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, 
     tiles.setTileAt(tiles.getTileLocation(22, 13), assets.tile`myTile31`)
     tiles.setTileAt(tiles.getTileLocation(50, 15), assets.tile`myTile32`)
     tiles.setTileAt(tiles.getTileLocation(53, 8), assets.tile`myTile33`)
+    info.setLife(3)
 })
 let mySprite: Sprite = null
 mySprite = sprites.create(assets.image`Sprite`, SpriteKind.Player)
