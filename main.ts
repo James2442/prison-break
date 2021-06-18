@@ -279,7 +279,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile31`, function (sprite, 
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile35`, function (sprite, location) {
-    game.splash("Hey kid. I've heard you're in the market for some tools, huh? How about this : ")
+    game.splash("Hey kid. I've heard you're in the market for some tools, huh? How about this : I'll lend you some tools if you can get both of us out of here. Sound good?.")
+    tiles.setTileAt(tiles.getTileLocation(33, 5), sprites.dungeon.darkGroundNorthWest1)
+    game.showLongText("New Goal : Use Tod's tools to dig out of prison.", DialogLayout.Bottom)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, location) {
     game.splash("Hey, I'm Ricky. I've got a favour to ask for. Someone's taken my things again, and if you could find them i'll be able to help you escape this place. Find my toothbrush, pillow and wallet and i'll help you out.")
