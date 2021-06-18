@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const Guard = SpriteKind.create()
     export const Prisoner = SpriteKind.create()
+    export const earlyGuard = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -483,7 +484,7 @@ guard1 = sprites.create(img`
     f 6 6 6 6 6 8 8 6 6 6 6 6 6 6 f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f f f f f f f f f f f f f f f f 
-    `, SpriteKind.Guard)
+    `, SpriteKind.earlyGuard)
 guard2 = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
@@ -501,7 +502,7 @@ guard2 = sprites.create(img`
     f 6 6 6 6 6 8 8 6 6 6 6 6 6 6 f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f f f f f f f f f f f f f f f f 
-    `, SpriteKind.Guard)
+    `, SpriteKind.earlyGuard)
 guard3 = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
@@ -519,7 +520,7 @@ guard3 = sprites.create(img`
     f 6 6 6 6 6 8 8 6 6 6 6 6 6 6 f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f f f f f f f f f f f f f f f f 
-    `, SpriteKind.Guard)
+    `, SpriteKind.earlyGuard)
 let guard4 = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
@@ -537,7 +538,7 @@ let guard4 = sprites.create(img`
     f 6 6 6 6 6 8 8 6 6 6 6 6 6 6 f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f f f f f f f f f f f f f f f f 
-    `, SpriteKind.Guard)
+    `, SpriteKind.earlyGuard)
 let prisoner1 = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
