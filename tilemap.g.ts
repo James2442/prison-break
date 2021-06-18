@@ -78,6 +78,16 @@ namespace myTiles {
     export const tile37 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile38 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile39 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile40 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile41 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile42 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile43 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -229,7 +239,26 @@ namespace myTiles {
 2...........2...................2.....2..........2..........2
 2...........2...................2.....2..........2..........2
 2222222222222222222222222222222222222222222222222222222222222
-`, [myTiles.transparency16,myTiles.tile9,myTiles.tile13,myTiles.tile16,myTiles.tile17,myTiles.tile20,myTiles.tile21,myTiles.tile7,myTiles.tile8,sprites.castle.tileGrass1,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile15,myTiles.tile6,myTiles.tile23,sprites.dungeon.darkGroundNorthWest1,sprites.dungeon.floorLight4,sprites.castle.tileGrass3,sprites.castle.tileGrass2,sprites.dungeon.floorLightMoss,sprites.dungeon.floorLight5,sprites.dungeon.floorLight1,myTiles.tile25,myTiles.tile26,myTiles.tile27,myTiles.tile28,myTiles.tile29,myTiles.tile31,myTiles.tile30,myTiles.tile32,myTiles.tile33,myTiles.tile38], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile9,myTiles.tile13,myTiles.tile16,myTiles.tile17,myTiles.tile20,myTiles.tile21,myTiles.tile7,myTiles.tile8,sprites.castle.tileGrass1,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile15,myTiles.tile6,myTiles.tile23,sprites.dungeon.darkGroundNorthWest1,sprites.dungeon.floorLight4,sprites.castle.tileGrass3,sprites.castle.tileGrass2,sprites.dungeon.floorLightMoss,sprites.dungeon.floorLight5,sprites.dungeon.floorLight1,myTiles.tile25,myTiles.tile26,myTiles.tile27,myTiles.tile28,myTiles.tile29,myTiles.tile31,myTiles.tile30,myTiles.tile32,myTiles.tile33,myTiles.tile40,myTiles.tile41,myTiles.tile42,myTiles.tile43], TileScale.Sixteen);
+            case "level8":
+            case "level8":return tiles.createTilemap(hex`1000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000`, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, [myTiles.transparency16], TileScale.Sixteen);
         }
         return null;
     })
@@ -313,6 +342,16 @@ namespace myTiles {
             case "tile37":return tile37;
             case "myTile35":
             case "tile38":return tile38;
+            case "myTile36":
+            case "tile39":return tile39;
+            case "myTile37":
+            case "tile40":return tile40;
+            case "myTile38":
+            case "tile41":return tile41;
+            case "myTile39":
+            case "tile42":return tile42;
+            case "myTile40":
+            case "tile43":return tile43;
         }
         return null;
     })
