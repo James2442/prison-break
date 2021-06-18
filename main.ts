@@ -65,16 +65,26 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile34`, function (sprite, 
     game.splash("Thanks for getting my stuff back. Here's a tip for you : The cameras have a blind spot in the bottom left courtyard - if you have the right tools you might be able to dig yourself out... Tod in cell 4 sells tools, and might be willing to give one to you for the right price.")
     tiles.setTileAt(tiles.getTileLocation(57, 5), sprites.dungeon.darkGroundNorthWest1)
     game.showLongText("New Goal : Talk to Tod in cell 4.", DialogLayout.Bottom)
+    tiles.setWallAt(tiles.getTileLocation(33, 6), false)
+    tiles.setTileAt(tiles.getTileLocation(33, 5), assets.tile`myTile35`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile32`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Wallet", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(50, 15), sprites.dungeon.darkGroundNorthWest1)
-    info.changeLifeBy(-1)
+    info.changeScoreBy(-1)
+    if (info.player1.score() == 0) {
+        game.showLongText("You found Ricky's belongings! Bring them back to him for a reward.", DialogLayout.Bottom)
+        tiles.setTileAt(tiles.getTileLocation(57, 5), assets.tile`myTile34`)
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile33`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Toothbrush", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(53, 8), sprites.dungeon.floorLight1)
-    info.changeLifeBy(-1)
+    info.changeScoreBy(-1)
+    if (info.player1.score() == 0) {
+        game.showLongText("You found Ricky's belongings! Bring them back to him for a reward.", DialogLayout.Bottom)
+        tiles.setTileAt(tiles.getTileLocation(57, 5), assets.tile`myTile34`)
+    }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -259,14 +269,17 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
-info.onLifeZero(function () {
-    game.showLongText("You found Ricky's belongings! Bring them back to him for a reward.", DialogLayout.Bottom)
-    tiles.setTileAt(tiles.getTileLocation(57, 5), assets.tile`myTile34`)
-})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile31`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Pillow", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(22, 13), sprites.castle.tileGrass1)
-    info.changeLifeBy(-1)
+    info.changeScoreBy(-1)
+    if (info.player1.score() == 0) {
+        game.showLongText("You found Ricky's belongings! Bring them back to him for a reward.", DialogLayout.Bottom)
+        tiles.setTileAt(tiles.getTileLocation(57, 5), assets.tile`myTile34`)
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile35`, function (sprite, location) {
+    game.splash("Hey kid. I've heard you're in the market for some tools, huh? How about this : ")
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, location) {
     game.splash("Hey, I'm Ricky. I've got a favour to ask for. Someone's taken my things again, and if you could find them i'll be able to help you escape this place. Find my toothbrush, pillow and wallet and i'll help you out.")
@@ -275,7 +288,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, 
     tiles.setTileAt(tiles.getTileLocation(22, 13), assets.tile`myTile31`)
     tiles.setTileAt(tiles.getTileLocation(50, 15), assets.tile`myTile32`)
     tiles.setTileAt(tiles.getTileLocation(53, 8), assets.tile`myTile33`)
-    info.setLife(3)
+    info.setScore(3)
 })
 let mySprite: Sprite = null
 mySprite = sprites.create(assets.image`Sprite`, SpriteKind.Player)
@@ -369,6 +382,24 @@ let prisoner1 = sprites.create(img`
     f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
     f f f f f f f f f f f f f f f f 
     `, SpriteKind.Prisoner)
+let prisoner2 = sprites.create(img`
+    f f f f f f f f f f f f f f f f 
+    f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 2 2 2 2 2 4 4 4 4 4 f 
+    f 4 4 4 4 2 4 4 4 2 4 4 4 4 4 f 
+    f 4 4 4 4 2 4 4 2 2 4 4 4 4 4 f 
+    f 4 4 4 4 2 2 2 2 4 4 4 4 4 4 f 
+    f 4 4 4 4 2 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 2 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 2 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 2 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 2 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
+    f 4 4 4 4 4 4 4 4 4 4 4 4 4 4 f 
+    f f f f f f f f f f f f f f f f 
+    `, SpriteKind.Prisoner)
 controller.moveSprite(mySprite, 100, 100)
 tiles.setTilemap(tilemap`level1`)
 scene.cameraFollowSprite(mySprite)
@@ -378,8 +409,10 @@ tiles.placeOnTile(guard1, tiles.getTileLocation(52, 16))
 tiles.placeOnTile(guard2, tiles.getTileLocation(6, 16))
 tiles.placeOnTile(guard3, tiles.getTileLocation(30, 16))
 tiles.placeOnTile(guard4, tiles.getTileLocation(55, 28))
+tiles.placeOnTile(prisoner2, tiles.getTileLocation(31, 1))
 game.showLongText("Welcome to Wilford Prison. You're going to be here for a long time, so make yourself welcome. You are housed here with 7 other prisoners and 4 guards. Say hi when you get some time!", DialogLayout.Bottom)
 tiles.setWallAt(tiles.getTileLocation(15, 6), true)
+tiles.setWallAt(tiles.getTileLocation(33, 6), true)
 game.onUpdate(function () {
     if (prisoner1.isHittingTile(CollisionDirection.Left)) {
         prisoner1.vx += 50
@@ -429,6 +462,18 @@ game.onUpdate(function () {
     }
 })
 game.onUpdate(function () {
+    if (prisoner2.isHittingTile(CollisionDirection.Left)) {
+        prisoner2.vx += 50
+    } else if (prisoner2.isHittingTile(CollisionDirection.Right)) {
+        prisoner2.vx += -50
+    }
+    if (prisoner2.isHittingTile(CollisionDirection.Top)) {
+        prisoner2.vy += 50
+    } else if (prisoner2.isHittingTile(CollisionDirection.Bottom)) {
+        prisoner2.vy += -50
+    }
+})
+game.onUpdate(function () {
     if (guard2.isHittingTile(CollisionDirection.Left)) {
         guard2.vx += 50
     } else if (guard2.isHittingTile(CollisionDirection.Right)) {
@@ -439,6 +484,9 @@ game.onUpdate(function () {
     } else if (guard2.isHittingTile(CollisionDirection.Bottom)) {
         guard2.vy += -50
     }
+})
+game.onUpdateInterval(1000, function () {
+    prisoner2.setVelocity(randint(-50, 50), randint(-50, 50))
 })
 game.onUpdateInterval(1000, function () {
     guard4.setVelocity(randint(-50, 50), randint(-50, 50))
