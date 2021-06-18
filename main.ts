@@ -77,6 +77,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile32`, function (sprite, 
         tiles.setTileAt(tiles.getTileLocation(57, 5), assets.tile`myTile34`)
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Guard, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    pause(500)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile33`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Toothbrush", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(53, 8), sprites.dungeon.floorLight1)
@@ -144,6 +148,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     200,
     true
     )
+})
+info.onCountdownEnd(function () {
+    game.over(true, effects.dissolve)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile29`, function (sprite, location) {
     game.showLongText("I've heard you're new here. Meet me in cell 8 (on the far right) and I can help you out. - Ricky", DialogLayout.Bottom)
@@ -218,6 +225,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile36`, function (sprite, 
     tiles.setTileAt(tiles.getTileLocation(1, 30), assets.tile`myTile39`)
     pause(500)
     tiles.setTileAt(tiles.getTileLocation(1, 30), assets.tile`myTile40`)
+    pause(500)
+    tiles.setTileAt(tiles.getTileLocation(1, 30), assets.tile`myTile41`)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -278,6 +287,18 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+info.onLifeZero(function () {
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(118, 30))
+    game.showLongText("You died. Try again.", DialogLayout.Bottom)
+    tiles.placeOnTile(guard1, tiles.getTileLocation(118, 25))
+    tiles.placeOnTile(guard2, tiles.getTileLocation(118, 20))
+    tiles.placeOnTile(guard3, tiles.getTileLocation(118, 15))
+    guard1.follow(mySprite, 90)
+    guard2.follow(mySprite, 80)
+    guard3.follow(mySprite, 70)
+    info.setLife(3)
+    info.startCountdown(8)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile31`, function (sprite, location) {
     game.showLongText("You Found : Ricky's Pillow", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(22, 13), sprites.castle.tileGrass1)
@@ -287,12 +308,27 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile31`, function (sprite, 
         tiles.setTileAt(tiles.getTileLocation(57, 5), assets.tile`myTile34`)
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile41`, function (sprite, location) {
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(118, 30))
+    game.showLongText("You escaped, but the guards are still after you! Run as far away as you can!", DialogLayout.Bottom)
+    tiles.placeOnTile(guard1, tiles.getTileLocation(118, 25))
+    tiles.placeOnTile(guard2, tiles.getTileLocation(118, 20))
+    tiles.placeOnTile(guard3, tiles.getTileLocation(118, 15))
+    guard1.follow(mySprite, 100)
+    guard2.follow(mySprite, 90)
+    guard3.follow(mySprite, 75)
+    info.setLife(3)
+    mySprite.setKind(SpriteKind.Player)
+    guard1.setKind(SpriteKind.Guard)
+    guard3.setKind(SpriteKind.Guard)
+    guard2.setKind(SpriteKind.Guard)
+    info.startCountdown(8)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile35`, function (sprite, location) {
     game.splash("Hey kid. I've heard you're in the market for some tools, huh? How about this : I'll lend you some tools if you can get both of us out of here. Sound good?.")
     tiles.setTileAt(tiles.getTileLocation(33, 5), sprites.dungeon.darkGroundNorthWest1)
     game.showLongText("New Goal : Use Tod's tools to dig out of prison.", DialogLayout.Bottom)
     tiles.setTileAt(tiles.getTileLocation(1, 30), assets.tile`myTile36`)
-    tiles.setTilemap(tilemap`level1`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, location) {
     game.splash("Hey, I'm Ricky. I've got a favour to ask for. Someone's taken my things again, and if you could find them i'll be able to help you escape this place. Find my toothbrush, pillow and wallet and i'll help you out.")
@@ -304,6 +340,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile30`, function (sprite, 
     info.setScore(3)
 })
 let mySprite: Sprite = null
+let guard3: Sprite = null
+let guard2: Sprite = null
+let guard1: Sprite = null
 scene.setBackgroundImage(img`
     cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
     cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
@@ -427,7 +466,7 @@ scene.setBackgroundImage(img`
     cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
     `)
 pause(2000)
-let guard1 = sprites.create(img`
+guard1 = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
@@ -445,7 +484,7 @@ let guard1 = sprites.create(img`
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f f f f f f f f f f f f f f f f 
     `, SpriteKind.Guard)
-let guard2 = sprites.create(img`
+guard2 = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
@@ -463,7 +502,7 @@ let guard2 = sprites.create(img`
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f f f f f f f f f f f f f f f f 
     `, SpriteKind.Guard)
-let guard3 = sprites.create(img`
+guard3 = sprites.create(img`
     f f f f f f f f f f f f f f f f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
     f 6 6 6 6 6 6 6 6 6 6 6 6 6 6 f 
